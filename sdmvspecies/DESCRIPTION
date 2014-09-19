@@ -1,7 +1,7 @@
 Package: sdmvspecies
 Type: Package
 Title: Create virtual species for species distribution modelling
-Version: 0.3
+Version: 0.3.1
 Date: 2014-01-05
 Author: Xiaoquan Kong, Renyan Duan, Minyi Huang
 Maintainer: Howl Anderson <u1mail2me@gmail.com>

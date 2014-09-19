@@ -1,13 +1,13 @@
 #!/usr/bin/env Rscript
 
 #' autoPCA
-#' 
+#'
 #' easily used PCA analysis
-#' 
+#'
 #' This method implemented an easily used PCA analysis method
-#' 
+#'
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
-#' @param nfactors Number of factors to extract, if it's 0 that method will auto descion the number. Default is 0
+#' @param nfactors Number of factors to extract
 #' @return \code{rasterStack} object
 #' @importFrom psych fa.parallel
 #' @importFrom psych principal
@@ -15,16 +15,8 @@
 #' @importFrom raster values<-
 #' @encoding utf-8
 #' @export
-autoPCA <- function(env.stack, nfactors=0) {
+autoPCA <- function(env.stack, nfactors) {
     env.data <- values(env.stack)
-
-    if (!nfactors) {
-        fa.result <- fa.parallel(env.data, n.iter=1000)
-        nfactors <- fa.result$ncomp    
-    }
-    if (!nfactors) {
-        stop("It seems other no principal components exits")
-    }
 
     pc <- principal(env.data, nfactors=nfactors)
     weights <- pc$weights

@@ -4,12 +4,12 @@
 \alias{autoPCA}
 \title{autoPCA}
 \usage{
-autoPCA(env.stack, nfactors = 0)
+autoPCA(env.stack, nfactors)
 }
 \arguments{
 \item{env.stack}{a \code{rasterStack} object that contain the environment variable}
 
-\item{nfactors}{Number of factors to extract, if it's 0 that method will auto descion the number. Default is 0}
+\item{nfactors}{Number of factors to extract}
 }
 \value{
 \code{rasterStack} object

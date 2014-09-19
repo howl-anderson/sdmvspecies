@@ -10,7 +10,7 @@ test_that("test default", {
     
     env.stack <- stack(list(env_one=env.one, env_two=env.two))
 
-    result.stack <- autoPCA(env.stack)
+    result.stack <- autoPCA(env.stack, nfactors=1)
     result.layer <- result.stack[[1]]
 
     standard.result.layer <- raster(nrow=3, ncol=3, xmn=0, xmx=3, ymn=0, ymx=3, crs=NA)
@@ -47,7 +47,7 @@ test_that("test stack (simple)", {
     
     env.stack <- stack(list(env_one=env.one, env_two=env.two, env_three=env.three))
     
-    result.stack <- autoPCA(env.stack)
+    result.stack <- autoPCA(env.stack, nfactors=2)
     
     layer.number <- nlayers(result.stack)
     

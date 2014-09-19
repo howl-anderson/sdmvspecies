@@ -12,10 +12,16 @@ rescaleLayer <- function(raster.layer) {
         stop("raster.layer is not a RasterLayer objectect!")
     }
     min.value <- cellStats(raster.layer, min)
-    raster.layer <- raster.layer + (0-min.value)
-    max.value <- cellStats(raster.layer, max)
-    raster.layer <- raster.layer/max.value
-    return(raster.layer)
+    if (min.value < 0) {
+        raster.layer <- raster.layer + (0-min.value)
+        max.value <- cellStats(raster.layer, max)
+        raster.layer <- raster.layer/max.value
+        return(raster.layer)
+    } else {
+        max.value <- cellStats(raster.layer, max)
+        raster.layer <- raster.layer/max.value
+        return(raster.layer)
+    }
 }
 
 #' rescaleStack

@@ -10,7 +10,7 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 
-\DeclareGraphicsExtensions{.png,.pdf,.jpg}
+\DeclareGraphicsExtensions{.pdf,.jpg}
 
 % \VignetteIndexEntry{Create virtual species with sdmvspecies}
 % \VignetteKeyword{species distribution modelling}
@@ -187,7 +187,7 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) + 
+layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
 layer(geom='line', data=plot.data2, mapping=aes(x=environment, y =suitability)) +
 layer(geom='segment', mapping=aes(x = 0, y = 0, xend=25, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
 layer(geom='segment', mapping=aes(x = 0, y = 0, xend=0, yend=1), arrow = arrow(length = unit(0.5, "cm")))
@@ -217,7 +217,7 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) + 
+layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
 layer(geom='line', data=plot.data2, mapping=aes(x=environment, y =suitability)) +
 layer(geom='segment', mapping=aes(x = -3, y = 0, xend=20, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
 layer(geom='segment', mapping=aes(x = -3, y = 0, xend=-3, yend=1), arrow = arrow(length = unit(0.5, "cm")))
@@ -234,10 +234,10 @@ Response function we retruduce abover, can be use in source with certain code:
 We see the same code used before, We change the code format for more easy to understand what we do.
 <<comment configure code>>=
 config <- list(
-    c("bio1","1",2), 
-    c("bio14", "2", 2), 
-    c("bio5", "3", 1), 
-    c("bio11", "4", 2), 
+    c("bio1","1",2),
+    c("bio14", "2", 2),
+    c("bio5", "3", 1),
+    c("bio11", "4", 2),
     c("bio16", "5", 1)
     )
 @
@@ -301,7 +301,7 @@ plot(species.raster)
 
 \section*{Artificial Bell-shaped response method}
 This method is first development by \citet{varela_environmental_2014}.
-User need to specfic the mean and standard devation of normal curves (bell-shaped) for each variable. The species' overall climatic suitability was defined as the multiplication of each variables's suitability. Then User choose a threshold to make distribution map. 
+User need to specfic the mean and standard devation of normal curves (bell-shaped) for each variable. The species' overall climatic suitability was defined as the multiplication of each variables's suitability. Then User choose a threshold to make distribution map.
 <<artificial_bell_response_method,echo=TRUE,fig=TRUE>>=
 # load the sdmvspecies library
 library("sdmvspecies")

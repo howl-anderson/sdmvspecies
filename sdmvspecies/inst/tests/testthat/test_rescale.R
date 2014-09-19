@@ -8,7 +8,7 @@ test_that("test RasterLayer", {
     result.layer <- rescale(raster.object)
     
     standard.result.layer <- raster(nrow=3, ncol=3, xmn=0, xmx=3, ymn=0, ymx=3, crs=NA)
-    standard.result.layer[] <- c(0.50,0.25,0.00,0.75,0.50,0.25,1.00,0.75,0.50)
+    standard.result.layer[] <- c(0.6,0.4,0.2,0.8,0.6,0.4,1.00,0.8,0.6)
     
     extent.result <- compareRaster(result.layer, standard.result.layer)
     if (extent.result) {
