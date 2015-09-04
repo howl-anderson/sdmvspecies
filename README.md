@@ -2,7 +2,7 @@
 ***
 
 ## About
-SDMvspecies is `R` package to create virtual speices (virutal data or artifical data) for SDM (Speices Distribution Modelling).
+SDMvspecies is `R` package to create virtual species (virtual data or artificial data) for SDM (Species Distribution Modelling).
 ## Install
 SDMvspecies is on `CRAN` package repo, so install it is very easy within `R`:
 
