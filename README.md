@@ -9,8 +9,8 @@ SDMvspecies is on `CRAN` package repo, so install it is very easy within `R`:
         install.packages("sdmvspecies", dependencies=TRUE)
 
 
-## Toturial & Manual
-Toturial see: [http://cran.r-project.org/web/packages/sdmvspecies/vignettes/sdmvspecies.pdf](http://cran.r-project.org/web/packages/sdmvspecies/vignettes/sdmvspecies.pdf)
+## Tutorial & Manual
+Tutorial see: [http://cran.r-project.org/web/packages/sdmvspecies/vignettes/sdmvspecies.pdf](http://cran.r-project.org/web/packages/sdmvspecies/vignettes/sdmvspecies.pdf)
 
 Manual see: [http://cran.r-project.org/web/packages/sdmvspecies/sdmvspecies.pdf](http://cran.r-project.org/web/packages/sdmvspecies/sdmvspecies.pdf)
 
@@ -20,14 +20,14 @@ Using github: [https://github.com/howl-anderson/sdmvspecies/issues](https://gith
 or write email to author: [u1mail2me@gmail.com](mailto:u1mail2me@gmail.com)
 
 ## Feature request
-write email to author: [u1mail2me@gmail.com](mailto:u1mail2me@gmail.com)
+Write email to author: [u1mail2me@gmail.com](mailto:u1mail2me@gmail.com)
 
 ## Other thing?
 write email to author: [u1mail2me@gmail.com](mailto:u1mail2me@gmail.com).
 Your are always welcome.
 
 ## Citing
-### Bibtex format
+### BibTex format
         @article{duan2015sdmvspecies,
           title={SDMvspecies: a software for creating virtual species for species distribution modelling},
           author={Duan, Ren-Yan and Kong, Xiao-Quan and Huang, Min-Yi and Wu, Gan-Lin and Wang, Zhi-Gao},
