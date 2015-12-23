@@ -3,7 +3,7 @@
 .artificialGaussianTranslate <- function(factor, normal.mean, normal.sd, rescale) {
     result <- dnorm(factor, normal.mean, normal.sd) 
     if (rescale) {
-        result <- sqrt(2*pi)*normal.sd*result
+        result <- sqrt(2 * pi) * normal.sd * result
     }
     return(result)
 }
@@ -55,14 +55,14 @@
 #' plot(species.distribution.raster)
 artificialBellResponse <- function(env.stack, config, stack=FALSE, compose="product", rescale=TRUE) {
     # check env.stack first
-    if (!(class(env.stack) %in% "RasterStack")) {
+    if (! (class(env.stack) %in% "RasterStack")) {
         stop("env.stack is not a RasterStack object!")
     }
     # TODO:here used mclapply but not given core.number
     species.list <- lapply(X=config, FUN=.artificialBellResponseMain, env.stack, rescale)
 
     species.matrix <- matrix(unlist(species.list), ncol=length(config), byrow=FALSE)
-    if (!stack) {
+    if (! stack) {
         if (compose == "product") {
             species <- apply(species.matrix, 1, prod)
         } else if (compose == "sum") {

@@ -76,7 +76,7 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
 
 .pickMedian <- function(env.name, env.stack) {
     env.layer <- env.stack[[env.name]]
-    env.matrix <- getValues(env.layer)
+    env.matrix <- raster::getValues(env.layer)
     env.quantile <- quantile(env.matrix, na.rm=TRUE)
     result.layer <- ((env.layer >= env.quantile[2]) & (env.layer <= env.quantile[4]))
     return(result.layer)

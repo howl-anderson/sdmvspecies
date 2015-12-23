@@ -89,24 +89,34 @@ In this method, species habit suitablity are bell-shaped function, see Figure:
 <<bell_shaped_response_function,fig=TRUE,echo=FALSE>>=
 library("ggplot2")
 library("grid") # needed for arrow function
-env <- seq(5, 15, length=1000)
-suitability <- dnorm(env, mean=10, sd=1.5)
-plot.data <- data.frame(environment=env,suitability=suitability)
+env <- seq(5, 15, length = 1000)
+suitability <- dnorm(env, mean = 10, sd = 1.5)
+plot.data <- data.frame(environment = env, suitability = suitability)
 ggplot() +
-theme_bw() +
-    theme(axis.line=element_blank(),
-      axis.text.x=element_blank(),
-      axis.text.y=element_blank(),
-      axis.ticks=element_blank(),
-      legend.position="none",
-      panel.background=element_blank(),
-      panel.border=element_blank(),
-      panel.grid.major=element_blank(),
-      panel.grid.minor=element_blank(),
-      plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=17, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=4, yend=0.3), arrow = arrow(length = unit(0.5, "cm")))
+    theme_bw() +
+    theme(
+        axis.line = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none",
+        panel.background = element_blank(),
+        panel.border = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        plot.background = element_blank()
+    ) +
+    geom_line(
+        data = plot.data, mapping = aes(x = environment, y = suitability)
+    ) +
+    geom_segment(mapping = aes(
+            x = 4, y = 0, xend = 17, yend = 0
+        ), arrow = arrow(length = unit(0.5, "cm"))
+    ) +
+    geom_segment(mapping = aes(
+            x = 4, y = 0, xend = 4, yend = 0.3
+        ), arrow = arrow(length = unit(0.5, "cm"))
+    )
 #plot(env, suitability, type="l", lwd=1)
 @
 
@@ -130,9 +140,9 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=17, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=4, yend=1), arrow = arrow(length = unit(0.5, "cm")))
+geom_line(data=plot.data, mapping=aes(x=environment, y =suitability)) +
+geom_segment(mapping=aes(x = 4, y = 0, xend=17, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
+geom_segment(mapping=aes(x = 4, y = 0, xend=4, yend=1), arrow = arrow(length = unit(0.5, "cm")))
 #plot(env, suitability, type="l", lwd=1)
 @
 
@@ -156,9 +166,9 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=17, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
-layer(geom='segment', mapping=aes(x = 4, y = 0, xend=4, yend=1), arrow = arrow(length = unit(0.5, "cm")))
+geom_line(data=plot.data, mapping=aes(x=environment, y =suitability)) +
+geom_segment(mapping=aes(x = 4, y = 0, xend=17, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
+geom_segment(mapping=aes(x = 4, y = 0, xend=4, yend=1), arrow = arrow(length = unit(0.5, "cm")))
 #plot(env, suitability, type="l", lwd=1)
 @
 
@@ -187,10 +197,10 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
-layer(geom='line', data=plot.data2, mapping=aes(x=environment, y =suitability)) +
-layer(geom='segment', mapping=aes(x = 0, y = 0, xend=25, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
-layer(geom='segment', mapping=aes(x = 0, y = 0, xend=0, yend=1), arrow = arrow(length = unit(0.5, "cm")))
+geom_line(data=plot.data, mapping=aes(x=environment, y =suitability)) +
+geom_line(data=plot.data2, mapping=aes(x=environment, y =suitability)) +
+geom_segment(mapping=aes(x = 0, y = 0, xend=25, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
+geom_segment(mapping=aes(x = 0, y = 0, xend=0, yend=1), arrow = arrow(length = unit(0.5, "cm")))
 @
 \subsubsection*{Truncated linear (decreasing) function}
 <<truncated_linear_decrease_function,echo=FALSE,fig=TRUE>>=
@@ -217,10 +227,10 @@ theme_bw() +
       panel.grid.major=element_blank(),
       panel.grid.minor=element_blank(),
       plot.background=element_blank()) +
-layer(geom='line', data=plot.data, mapping=aes(x=environment, y =suitability)) +
-layer(geom='line', data=plot.data2, mapping=aes(x=environment, y =suitability)) +
-layer(geom='segment', mapping=aes(x = -3, y = 0, xend=20, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
-layer(geom='segment', mapping=aes(x = -3, y = 0, xend=-3, yend=1), arrow = arrow(length = unit(0.5, "cm")))
+geom_line(data=plot.data, mapping=aes(x=environment, y =suitability)) +
+geom_line(data=plot.data2, mapping=aes(x=environment, y =suitability)) +
+geom_segment(mapping=aes(x = -3, y = 0, xend=20, yend=0), arrow = arrow(length = unit(0.5, "cm"))) +
+geom_segment(mapping=aes(x = -3, y = 0, xend=-3, yend=1), arrow = arrow(length = unit(0.5, "cm")))
 @
 \subsection*{Write configure code}
 Response function we retruduce abover, can be use in source with certain code:
