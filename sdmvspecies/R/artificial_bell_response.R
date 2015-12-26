@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 .artificialGaussianTranslate <- function(factor, normal.mean, normal.sd, rescale) {
-    result <- dnorm(factor, normal.mean, normal.sd) 
+    result <- dnorm(factor, normal.mean, normal.sd)
     if (rescale) {
         result <- sqrt(2 * pi) * normal.sd * result
     }
@@ -9,11 +9,11 @@
 }
 
 #' artificialBellResponse
-#' 
+#'
 #' artificial bell response method
-#' 
+#'
 #' This method mainly implement artificial bell response method, more detail see references.
-#' 
+#'
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
 #' @param config config is a \code{list} or \code{matrix} or \code{data.frame} that contain config info, details see details part
 #' @param stack stack is an option that if you want not compose them togethor (result return as a \code{rasterStack}). Default is FALSE

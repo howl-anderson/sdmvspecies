@@ -2,19 +2,17 @@
 
 
 #' pickMedian
-#' 
+#'
 #' pick median method
-#' 
+#'
 #' This method mainly implement pick median method
-#' 
+#'
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
-#' @param subset subset is a string \code{vector} that contain environment variables names which into calculate, if NULL that all var in env.stack will calculate. 
+#' @param subset subset is a string \code{vector} that contain environment variables names which into calculate, if NULL that all var in env.stack will calculate.
 #' @param stack stack is an option that if you want not compose them togethor (result return as a \code{rasterStack}). Default is FALSE
 #' @return \code{rasterLayer} or \code{rasterStack} if stack is set to TRUE
 #' @references Lobo, J. M., & Tognelli, M. F. (2011). Exploring the effects of quantity and location of pseudo-absences and sampling biases on the performance of distribution models with limited point occurrence data. Journal for Nature Conservation, 19(1), 1-7.
 #' @encoding utf-8
-#' @importFrom raster as.vector
-#' @importFrom raster stackApply
 #' @export
 #' @examples
 #' # load the sdmvspecies library
@@ -41,7 +39,7 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
         stop("env.stack is not a RasterStack object!")
     }
     env.names <- unlist(names(env.stack))
-    
+
     if (length(subset)) {
         check.result <- subset %in% env.names
         if (!all(check.result)) {
@@ -54,10 +52,10 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
 
     # TODO:here used mclapply but not given core.number
     species.list <- mclapply(X=env.names, FUN=.pickMedian, env.stack)
-    
+
     if (!stack) {
         species.stack <- stack(species.list)
-        species.layer <- stackApply(species.stack, c(1), sum, na.rm=FALSE)
+        species.layer <- raster::stackApply(species.stack, c(1), sum, na.rm=FALSE)
         threshold <- length(env.names)
         species.layer <- species.layer >= threshold
         return(species.layer)
@@ -77,7 +75,7 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
 .pickMedian <- function(env.name, env.stack) {
     env.layer <- env.stack[[env.name]]
     env.matrix <- raster::getValues(env.layer)
-    env.quantile <- quantile(env.matrix, na.rm=TRUE)
+    env.quantile <- stats::quantile(env.matrix, na.rm=TRUE)
     result.layer <- ((env.layer >= env.quantile[2]) & (env.layer <= env.quantile[4]))
     return(result.layer)
 }

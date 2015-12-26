@@ -37,7 +37,7 @@ set.seed(0)
 
 
 \title{Create virtual species with sdmvspecies}
-\author{Xiaoquan Kong \& Renyan Duan \& Minyi Huang}
+\author{Xiaoquan Kong}
 \maketitle
 
 % \tableofcontents

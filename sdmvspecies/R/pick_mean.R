@@ -2,19 +2,18 @@
 
 
 #' pickMean
-#' 
+#'
 #' pick mean method
-#' 
+#'
 #' This method mainly implement pick mean method
-#' 
+#'
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
-#' @param subset subset is a string \code{vector} that contain environment variables names which into calculate, if NULL that all var in env.stack will calculate. 
+#' @param subset subset is a string \code{vector} that contain environment variables names which into calculate, if NULL that all var in env.stack will calculate.
 #' @param stack stack is an option that if you want not compose them togethor (result return as a \code{rasterStack}). Default is FALSE
 #' @return \code{rasterLayer} or \code{rasterStack} if stack is set to TRUE
 #' @references Jiménez-Valverde, A., & Lobo, J. M. (2007). Threshold criteria for conversion of probability of species presence to either–or presence–absence. Acta oecologica, 31(3), 361-369.
 #' @encoding utf-8
 #' @importFrom raster cellStats
-#' @importFrom raster stackApply
 #' @export
 #' @examples
 #' # load the sdmvspecies library
@@ -58,11 +57,11 @@ pickMean <- function(env.stack, subset=NULL, stack=FALSE) {
 
     if (!stack) {
         species.stack <- stack(species.list)
-        species.layer <- stackApply(species.stack, c(1), sum, na.rm=FALSE)
+        species.layer <- raster::stackApply(species.stack, c(1), sum, na.rm=FALSE)
         threshold <- length(env.names)
         species.layer <- species.layer >= threshold
         return(species.layer)
-    } else {        
+    } else {
         species.layer <- env.stack[[env.names[1]]]
         col.number <- length(species.list)
         species.stack <- stack()

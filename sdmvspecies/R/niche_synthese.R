@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 
-
+#' @importFrom stats dnorm
 .gaussianTranslate <- function(factor, range, min, mean) {
     normal.sd <- range/6
-    result <- dnorm(factor, mean, normal.sd) 
+    result <- dnorm(factor, mean, normal.sd)
 
     result <- sqrt(2*pi)*normal.sd*result
     return(result)
@@ -22,12 +22,12 @@
 
 .truncatedLinearIncreaseTranslate <- function(factor, range, min, mean) {
     critical.point <- range*2/3+min
-    
+
     original.factor <- factor
     factor.na <- is.na(original.factor)
     indictor <- original.factor >= critical.point
     indictor[factor.na] <- FALSE
-    
+
     factor[indictor]<- 1
     indictor <- original.factor < critical.point
     indictor[factor.na] <- FALSE
@@ -40,28 +40,28 @@
 
 .truncatedLinearDecreaseTranslate <- function(factor, range, min, mean) {
     critical.point <- range*1/3+min
-    
+
     original.factor <- factor
     factor.na <- is.na(original.factor)
     indictor <- original.factor <= critical.point
     indictor[factor.na] <- FALSE
-    
+
     factor[indictor]<- 1
     indictor <- original.factor > critical.point
     indictor[factor.na] <- FALSE
     new.value <- 1/(range-critical.point)*(range+min-original.factor)
     factor[indictor] <- new.value[indictor]
-    
+
     return(factor)
 }
 
 
 #' nicheSynthese
-#' 
+#'
 #' niche synthese method
-#' 
+#'
 #' This method mainly implement niche synthese method, for more details see references
-#' 
+#'
 #' You can write several paragraphs.
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
 #' @param config config is a \code{list} or \code{matrix} or \code{data.frame} that contain config info, details see details part
@@ -72,6 +72,7 @@
 #' @encoding utf-8
 #' @importFrom parallel mclapply
 #' @importFrom raster cellStats
+#' @importFrom stats runif
 #' @export
 #' @examples
 #' # load the sdmvspecies library
@@ -89,17 +90,17 @@
 #' env.files <- list.files(env.dir, pattern="*.bil$", full.names=TRUE)
 #' # see the file list
 #' env.files
-#' # put the environment file in a raster stack, 
+#' # put the environment file in a raster stack,
 #' # which require all the environment should have same resolution and extend
 #' env.stack <- stack(env.files)
 #' # let see the env.stack var
 #' env.stack
 #' # here let's configure the environment response function and weight
 #' config <- list(
-#'     c("bio1","1",2), 
-#'     c("bio14", "2", 2), 
-#'     c("bio5", "3", 1), 
-#'     c("bio11", "4", 2), 
+#'     c("bio1","1",2),
+#'     c("bio14", "2", 2),
+#'     c("bio5", "3", 1),
+#'     c("bio11", "4", 2),
 #'     c("bio16", "5", 1)
 #' )
 #' # call the niche synthsis method
@@ -107,12 +108,12 @@
 #' # let see the result raster,
 #' # you should noticed that it's continue value map not distributin map
 #' species.raster
-#' 
+#'
 #' # write the map to file, so you can use it latter in GIS software
 #' # or further analysis.
-#' # 
+#' #
 #' #writeRaster(species.raster, "synthese.img", "HFA", overwrite=TRUE)
-#' 
+#'
 #' # to make binary distribution map, you should chosee a threshold to make map
 #' # see the map then to decide the threshold to binary
 #' plot(species.raster)
@@ -124,7 +125,7 @@
 #' plot(distribution.map)
 nicheSynthese <- function(env.stack, config, stack=FALSE, random.error=FALSE) {
     RESPONSE_METHOD = seq(1,5)
-    
+
     # check env.stack first
     if (!(class(env.stack) %in% "RasterStack")) {
         stop("env.stack is not a RasterStack object!")
@@ -141,7 +142,7 @@ nicheSynthese <- function(env.stack, config, stack=FALSE, random.error=FALSE) {
     }
     # TODO:here used mclapply but not given core.number
     species.list <- mclapply(X=config, FUN=.nicheSyntheseMain, env.stack)
-    
+
     species.matrix <- matrix(unlist(species.list), ncol=length(config), byrow=FALSE)
     if (!stack) {
         species <- apply(species.matrix, 1, sum)
@@ -155,7 +156,7 @@ nicheSynthese <- function(env.stack, config, stack=FALSE, random.error=FALSE) {
             random.error <- runif(cell.number, -0.05, 0.05)
             species <- species + random.error
         }
-        
+
         species.layer <- env.stack[[config[[1]][1]]]
         species.raster <- setValues(species.layer, as.vector(species))
         return(species.raster)
