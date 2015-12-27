@@ -1,5 +1,6 @@
 language: r
 sudo: required
 apt_packages:
+    - libhdf5-serial-dev
     - libgdal-dev
     - libproj-dev
