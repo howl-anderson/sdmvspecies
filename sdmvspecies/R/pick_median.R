@@ -55,7 +55,7 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
 
     if (!stack) {
         species.stack <- stack(species.list)
-        species.layer <- raster::stackApply(species.stack, c(1), sum, na.rm=FALSE)
+        species.layer <- stackApply(species.stack, c(1), sum, na.rm=FALSE)
         threshold <- length(env.names)
         species.layer <- species.layer >= threshold
         return(species.layer)
@@ -64,7 +64,8 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
         col.number <- length(species.list)
         species.stack <- stack()
         for (col.index in 1:col.number) {
-            species.raster <- setValues(species.layer, as.vector(species.list[[col.index]]))
+            # species.raster <- setValues(species.layer, as.vector(species.list[[col.index]]))
+            species.raster <- setValues(species.layer, getValues(species.list[[col.index]]))
             species.stack <- stack(species.stack, species.raster)
         }
         names(species.stack) <- env.names
@@ -74,8 +75,8 @@ pickMedian <- function(env.stack, subset=NULL, stack=FALSE) {
 
 .pickMedian <- function(env.name, env.stack) {
     env.layer <- env.stack[[env.name]]
-    env.matrix <- raster::getValues(env.layer)
-    env.quantile <- stats::quantile(env.matrix, na.rm=TRUE)
+    env.matrix <- getValues(env.layer)
+    env.quantile <- quantile(env.matrix, na.rm=TRUE)
     result.layer <- ((env.layer >= env.quantile[2]) & (env.layer <= env.quantile[4]))
     return(result.layer)
 }

@@ -2,32 +2,32 @@ Package: sdmvspecies
 Type: Package
 Title: Create Virtual Species for Species Distribution Modelling
 Version: 0.3.2
-Date: 2015-12-23
+Date: 2015-12-27
 Authors@R: c(
              person(given="Xiaoquan", family="Kong", email="u1mail2me@gmail.com", role=c("aut", "cre", "cph")),
              person(given="Renyan", family="Duan", role=c("ths")),
              person(given="Minyi", family="Huang", role=c("ths"))
              )
 Author: Xiaoquan Kong [aut, cre, cph],
-        Renyan Duan [ths],
-        Minyi Huang [ths]
+    Renyan Duan [ths],
+    Minyi Huang [ths]
 Maintainer: Xiaoquan Kong <u1mail2me@gmail.com>
-Description: Virutal species is a good tools or technology in ecology. Create virutal species need user famillar with programming.
-    This package includes several methods to help user to create virtual species
-    distribution map. Those maps can be used for species distribution modelling
-    (SDM) study. SDM use environmental data for sites of occurrence of a
-    species to predict all the sites where the environmental conditions are
-    suitable for the species to persist, and may be expected to occur.
+Description: Virtual species is a good tools or technology in ecology. Create
+    virtual species need user familiar with programming. This package includes
+    several methods to help user to create virtual species distribution map.
+    Those maps can be used for Species Distribution Modelling (SDM) study. SDM use
+    environmental data for sites of occurrence of a species to predict all the sites
+    where the environmental conditions are suitable for the species to persist, and
+    may be expected to occur.
 License: AGPL-3
 Encoding: UTF-8
-Depends:
-    GPArotation
 Imports:
-    ggplot2,
-    psych,
+    stats,
     raster,
+    psych,
     parallel
 Suggests:
+    ggplot2,
     testthat,
     roxygen2
 RoxygenNote: 5.0.1

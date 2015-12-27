@@ -68,7 +68,7 @@ Let's do a simple example:
 > package.dir <- system.file(package="sdmvspecies")
 > env.dir <- paste(package.dir, "/external/env", sep="")
 > files <- list.files(path=env.dir, pattern="*.bil$", full.names=TRUE)
-> env.stack <- stack(files)
+> env.stack <- raster::stack(files)
 > print(files)
 \end{Sinput}
 \begin{Soutput}
@@ -165,7 +165,7 @@ This method will consider the points fall in mean\textpm SD are suitable for vir
 > file.name <- files <- c("bio1.bil", "bio12.bil", "bio7.bil", "bio5.bil")
 > files <- paste(env.dir, file.name, sep="")
 > # make raster stack
-> env.stack <- stack(files)
+> env.stack <- raster::stack(files)
 > # run pick mean
 > species.raster <- pickMean(env.stack)
 > # plot map
@@ -206,7 +206,7 @@ occurence at this variables level. The cells fall in all of variables' central q
 > file.name <- files <- c("bio1.bil", "bio12.bil", "bio7.bil", "bio5.bil")
 > files <- paste(env.dir, file.name, sep="")
 > # make raster stack
-> env.stack <- stack(files)
+> env.stack <- raster::stack(files)
 > # run pick mean
 > species.raster <- pickMedian(env.stack)
 > # plot map
@@ -244,7 +244,7 @@ User need to specfic the mean and standard devation of normal curves (bell-shape
 > file.name <- files <- c("bio1.bil", "bio12.bil", "bio7.bil", "bio5.bil")
 > files <- paste(env.dir, file.name, sep="")
 > # make raster stack
-> env.stack <- stack(files)
+> env.stack <- raster::stack(files)
 > # config
 > config <- list(c("bio1",150, 50), c("bio12", 2000, 500), c("bio7", 400, 100), c("bio5", 300, 100))
 > # run pick mean

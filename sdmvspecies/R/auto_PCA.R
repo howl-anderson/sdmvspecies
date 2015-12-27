@@ -9,10 +9,6 @@
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
 #' @param nfactors Number of factors to extract
 #' @return \code{rasterStack} object
-#' @importFrom psych fa.parallel
-#' @importFrom psych principal
-#' @importFrom raster values
-#' @importFrom raster values<-
 #' @encoding utf-8
 #' @export
 autoPCA <- function(env.stack, nfactors) {

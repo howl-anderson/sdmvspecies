@@ -1,12 +1,11 @@
 #!/usr/bin/env Rscript
 
 #' rescaleLayer
-#' 
+#'
 #' rescale the RasterLayer values to min:0 max:1
-#' 
+#'
 #' @param raster.layer an object of RasterLayer class
 #' @return an object of RasterLayer that rescaled.
-#' @importFrom raster cellStats
 rescaleLayer <- function(raster.layer) {
     if (!(class(raster.layer) %in% "RasterLayer")) {
         stop("raster.layer is not a RasterLayer objectect!")
@@ -25,9 +24,9 @@ rescaleLayer <- function(raster.layer) {
 }
 
 #' rescaleStack
-#' 
+#'
 #' rescale the RasterStack values to min:0 max:1
-#' 
+#'
 #' @param raster.stack an object of RasterStack class
 #' @return an object of RasterStack that rescaled.
 rescaleStack <- function(raster.stack) {
@@ -42,11 +41,11 @@ rescaleStack <- function(raster.stack) {
 }
 
 #' rescale
-#' 
+#'
 #' rescale the RasterStack or RasterLayer values to min:0 max:1
-#' 
+#'
 #' @param raster.object an object of RasterStack or RasterLayer class
-#' @return an object of RasterStack or RasterLayer that rescaled. 
+#' @return an object of RasterStack or RasterLayer that rescaled.
 #' @export
 rescale <- function(raster.object) {
     if (!(class(raster.object) %in% c("RasterLayer", "RasterStack"))) {

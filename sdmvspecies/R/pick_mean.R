@@ -13,7 +13,6 @@
 #' @return \code{rasterLayer} or \code{rasterStack} if stack is set to TRUE
 #' @references Jiménez-Valverde, A., & Lobo, J. M. (2007). Threshold criteria for conversion of probability of species presence to either–or presence–absence. Acta oecologica, 31(3), 361-369.
 #' @encoding utf-8
-#' @importFrom raster cellStats
 #' @export
 #' @examples
 #' # load the sdmvspecies library
@@ -53,11 +52,11 @@ pickMean <- function(env.stack, subset=NULL, stack=FALSE) {
     }
 
     # TODO:here used mclapply but not given core.number
-    species.list <- mclapply(X=env.names, FUN=.pickMean, env.stack)
+    species.list <- parallel::mclapply(X=env.names, FUN=.pickMean, env.stack)
 
     if (!stack) {
         species.stack <- stack(species.list)
-        species.layer <- raster::stackApply(species.stack, c(1), sum, na.rm=FALSE)
+        species.layer <- stackApply(species.stack, c(1), sum, na.rm=FALSE)
         threshold <- length(env.names)
         species.layer <- species.layer >= threshold
         return(species.layer)
@@ -66,7 +65,8 @@ pickMean <- function(env.stack, subset=NULL, stack=FALSE) {
         col.number <- length(species.list)
         species.stack <- stack()
         for (col.index in 1:col.number) {
-            species.raster <- setValues(species.layer, as.vector(species.list[[col.index]]))
+            # species.raster <- setValues(species.layer, as.vector(species.list[[col.index]]))
+            species.raster <- setValues(species.layer, getValues(species.list[[col.index]]))
             species.stack <- stack(species.stack, species.raster)
         }
         names(species.stack) <- env.names

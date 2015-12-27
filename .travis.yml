@@ -1,0 +1,5 @@
+language: r
+sudo: required
+apt_packages:
+    - libgdal-dev
+    - libproj-dev

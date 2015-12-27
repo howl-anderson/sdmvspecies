@@ -22,9 +22,6 @@
 #' @return \code{rasterLayer} or \code{rasterStack} if stack is set to TRUE
 #' @references Varela, S., Anderson, R. P., García-Valdés, R., & Fernández-González, F. (2014). Environmental filters reduce the effects of sampling bias and improve predictions of ecological niche models. Ecography.
 #' @encoding utf-8
-#' @importFrom raster stack
-#' @importFrom raster setValues
-#' @importFrom raster getValues
 #' @export
 #' @examples
 #' # load the sdmvspecies library

@@ -1,6 +1,5 @@
 #!/usr/bin/env Rscript
 
-#' @importFrom stats dnorm
 .gaussianTranslate <- function(factor, range, min, mean) {
     normal.sd <- range/6
     result <- dnorm(factor, mean, normal.sd)
@@ -70,9 +69,6 @@
 #' @return \code{rasterLayer} or \code{rasterStack} if stack is set to TRUE
 #' @references Hirzel, A. H., Helfer, V., & Metral, F. (2001). Assessing habitat-suitability models with a virtual species. Ecological modelling, 145(2), 111-121.
 #' @encoding utf-8
-#' @importFrom parallel mclapply
-#' @importFrom raster cellStats
-#' @importFrom stats runif
 #' @export
 #' @examples
 #' # load the sdmvspecies library

@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
 
 #' configStack
-#' 
+#'
 #' output config layers as rasterStack
-#' 
+#'
 #' This method will extract rasterLayer acorrding to config, then output rasterStack as result
-#' 
+#'
 #' @param env.stack a \code{rasterStack} object that contain the environment variable
 #' @param config config is a \code{list} or \code{matrix} or \code{data.frame} that contain config info, details see details part
 #' @return \code{rasterStack} object
@@ -27,7 +27,7 @@
 #' env.files <- list.files(env.dir, pattern="*.bil$", full.names=TRUE)
 #' # see the file list
 #' env.files
-#' # put the environment file in a raster stack, 
+#' # put the environment file in a raster stack,
 #' # which require all the environment should have same resolution and extend
 #' env.stack <- stack(env.files)
 #' # let see the env.stack var
@@ -53,7 +53,7 @@ configStack <- function(env.stack, config) {
     raster.list <- mclapply(X=config, FUN=.extractRaster, env.stack)
     #print(species.list)
 
-    raster.stack <- stack(raster.list) 
+    raster.stack <- stack(raster.list)
     names(raster.stack) <- raster.name
     return(raster.stack)
 }

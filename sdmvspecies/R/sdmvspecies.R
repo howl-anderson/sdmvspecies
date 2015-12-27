@@ -5,9 +5,6 @@
 #' This package contain some useful tools for create and study virtual species in SDM
 #'
 #' @author Xiaoquan Kong
-#' @import ggplot2
-#' @import raster
-#' @import GPArotation
 #' @encoding utf-8
 #' @details
 #' SDMvspcices is a tools package for creating virtual species in Species Distribution Modelling (SDM)
@@ -16,4 +13,9 @@
 #'
 #' @docType package
 #' @name sdmvspecies
+#'
+#' @importFrom raster cellStats stack stackApply setValues getValues values values<-
+#' @importFrom stats dnorm runif quantile
+#' @importFrom psych principal
+#' @importFrom parallel mclapply
 NULL
